@@ -11,12 +11,8 @@ public class Employee {
         this.staff = staff;
         this.salaryStaff = salaryStaff;
         this.departmentNumber = departmentNumber;
-        this.id = getCounter();
-        counter++;
+        this.id = counter++;
     }
-
-    public static int getCounter(){
-        return counter;}
 
     public String getStaff() {
         return staff;
@@ -30,10 +26,6 @@ public class Employee {
 
     public int getDepartmentNumber() {
         return departmentNumber;
-    }
-
-    public void setStaff(String staff) {
-        this.staff = staff;
     }
 
     public void setSalaryStaff(int salaryStaff) {

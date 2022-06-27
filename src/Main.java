@@ -14,76 +14,75 @@ public class Main {
 //    d. Найти сотрудника с максимальной зарплатой.
 //    e. Подсчитать среднее значение зарплат (можно использовать для этого метод из пункта b).
 //    f. Получить Ф. И. О. всех сотрудников (вывести в консоль).
-    public static void countMinSalary(Employee[] employees) {
-        if (employees.length > 0) {
-            Employee staff = employees[0];
-            for (Employee employee : employees) {
-                if (staff.getSalaryStaff() > employee.getSalaryStaff())
-                    staff = employee;
-            }
-            System.out.println("Сотрудник с минимальной зарплатой " + staff.getSalaryStaff() + staff.getStaff());
-        }
-        }
 
-    public static void countMaxSalary(Employee[] employees) {
-        if (employees.length > 0) {
-            Employee staff = employees[0];
-            for (Employee employee : employees) {
-                if (staff.getSalaryStaff() < employee.getSalaryStaff())
-                    staff = employee;
-            }
-            System.out.println("Сотрудник с максимальной зарплатой " + staff.getSalaryStaff() + staff.getStaff());
+
+private static final Employee[] employee = new Employee[10];
+
+public static void main(String[] args) {
+
+    employee[0] = new Employee("Ivanov Ivan Ivanovich ", 30000, 1);
+    employee[1] = new Employee("Petrov Petr Petrovich ", 38000, 3);
+    employee[2] = new Employee("Vlasov Vladimir Vladimirovich ", 47000, 5);
+    employee[3] = new Employee("Andreev Andrey Andreevich ", 35000, 1);
+    employee[4] = new Employee("Danilov Danil Danilovich ", 81000, 4);
+    employee[5] = new Employee("Putilov Yuri Yurievich ", 95000, 2);
+    employee[6] = new Employee("Sergeev Sergey Sergeevich ", 100000, 5);
+    employee[7] = new Employee("Semenov Semen Semenovich ", 59000, 3);
+    employee[8] = new Employee("Nikolaev Nikolay Nikolaevich ", 75000, 2);
+    employee[9] = new Employee("Fedorov Fedor Fedorovich ", 64000, 4);
+
+    typeAllStaff();
+    countMinSalary();
+    countMaxSalary();
+    System.out.println("Зарплата всех сотрудников в месяц " + countStaffSalary());
+    System.out.println("Средняя зарплата " + averageSalary());
+    countAllStaff();
+}
+
+    private static void typeAllStaff() {
+        for (Employee employees : employee) {
+            System.out.println(employees);
         }
+    }
+
+    private static void countMinSalary() {
+        Employee min = employee[0];
+        for (Employee employees : employee) {
+            if (min.getSalaryStaff() > employees.getSalaryStaff()) {
+                min = employees;
+            }
+        }
+        System.out.println("Сотрудник с минимальной зарплатой: " + min.getStaff() + ": " + min.getSalaryStaff());
+    }
+
+    private static void countMaxSalary() {
+        Employee min = employee[0];
+        for (Employee employees : employee) {
+            if (min.getSalaryStaff() < employees.getSalaryStaff()) {
+                min = employees;
+            }
+        }
+        System.out.println("Сотрудник с максимальной зарплатой: " + min.getStaff() + ": " + min.getSalaryStaff());
     }
 
 
 
-    public static void typeAllStaff(Employee[] employees) {
-        for (Employee employee : employees) {
-            System.out.println(employee);
-        }
-    }
-
-    public static int countStaffSalary(Employee[] employees) {
+    private static int countStaffSalary() {
         int sum = 0;
-        for (Employee employee : employees) {
+        for (Employee employee : employee) {
             sum += employee.getSalaryStaff();
         }
-        System.out.println("Сумма затрат на зарплаты в месяц " + sum);
         return sum;
     }
-
-    public static void averageSalary(Employee[] employees) {
-        int sum = countStaffSalary(employees);
-        int average = sum / employees.length;
-        System.out.println("Средняя зарплата " + average);
+    private static float averageSalary() {
+        int sum = countStaffSalary();
+        return (float) (sum / employee.length);
     }
 
-    public static void countAllStaff(Employee[] employees) {
-        for (Employee employee : employees) {
+    private static void countAllStaff() {
+        for (Employee employee : employee) {
             System.out.println("Сотрудники " + employee.getStaff());
         }
     }
-
-    public static void main(String[] args) {
-
-        Employee[] employee = new Employee[10];
-        employee[0] = new Employee("Ivanov Ivan Ivanovich ", 30000, 1);
-        employee[1] = new Employee("Petrov Petr Petrovich ", 38000, 3);
-        employee[2] = new Employee("Vlasov Vladimir Vladimirovich ", 47000, 5);
-        employee[3] = new Employee("Andreev Andrey Andreevich ", 35000, 1);
-        employee[4] = new Employee("Danilov Danil Danilovich ", 81000, 4);
-        employee[5] = new Employee("Putilov Yuri Yurievich ", 95000, 2);
-        employee[6] = new Employee("Sergeev Sergey Sergeevich ", 100000, 5);
-        employee[7] = new Employee("Semenov Semen Semenovich ", 59000, 3);
-        employee[8] = new Employee("Nikolaev Nikolay Nikolaevich ", 75000, 2);
-        employee[9] = new Employee("Fedorov Fedor Fedorovich ", 64000, 4);
-
-        typeAllStaff(employee);
-        countMinSalary(employee);
-        countMaxSalary(employee);
-        countStaffSalary(employee);
-        averageSalary(employee);
-        countAllStaff(employee);
-    }
 }
+
